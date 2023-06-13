@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
 
 export default function saveNoteReducer(
-  state = initialState.savedProduct,
+  state = initialState.savedNote,
   action
 ) {
   switch (action.type) {

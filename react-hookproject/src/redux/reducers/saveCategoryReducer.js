@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 import initialState from "./initialState";
 
 export default function saveCategoryReducer(
-  state = initialState.savedProduct,
+  state = initialState.savedCategory,
   action
 ) {
   switch (action.type) {

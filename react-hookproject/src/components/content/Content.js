@@ -4,6 +4,7 @@ import { Container } from "reactstrap";
 import { Switch, Route } from "react-router-dom";
 
 import Topbar from "./Topbar";
+import Login from "../user/Login";
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   <Container
@@ -26,6 +27,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <Route exact path="/page-2" component={() => "page-2"} />
       <Route exact path="/page-3" component={() => "page-3"} />
       <Route exact path="/page-4" component={() => "page-4"} />
+      <Route exact path="/login" component={()=><Login/>}></Route>
     </Switch>
   </Container>
 );

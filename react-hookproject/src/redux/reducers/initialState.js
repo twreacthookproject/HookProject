@@ -1,7 +1,9 @@
 export default {
     currentCategory:{},
     categories:[],
-    products:[],
-    cart:[],
-    savedProduct:{}
+    notes:[],
+    note:{},
+    savedNote:{},
+    savedCategory:{},
+    onlineUsers:{},
 }
