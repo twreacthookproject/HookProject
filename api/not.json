@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Kişisel"
+    },
+    {
+      "id": 2,
+      "name": "İş"
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "title": "Toplantı Notları",
+      "content": "Müşteriyle iletişimi takip etmeyi unutma",
+      "toDo":1,
+      "category_id": 2
+    },
+    {
+      "id": 2,
+      "title": "Alışveriş Listesi",
+      "content": "Süt, yumurta, ekmek",
+      "toDo":2,
+      "category_id": 1
+    },
+    {
+      "id": 3,
+      "title": "Fikirler",
+      "content": "Yeni proje için beyin fırtınası yap",
+      "toDo":3,
+      "category_id": 2
+    }
+  ]
+}
