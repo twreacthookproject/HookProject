@@ -11,7 +11,6 @@ import {
 import { NavItem, NavLink, Nav } from "reactstrap";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-
 import SubMenu from "./SubMenu";
 
 const SideBar = ({ isOpen, toggle }) => (
@@ -20,11 +19,11 @@ const SideBar = ({ isOpen, toggle }) => (
       <span color="info" onClick={toggle} style={{ color: "#fff" }}>
         &times;
       </span>
-      <h3>Bootstrap Sidebar</h3>
+      <h3>NOTES</h3>
     </div>
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
-        <p>Dummy Heading</p>
+        <p>Menu</p>
         <SubMenu title="Home" icon={faHome} items={submenus[0]} />
         <NavItem>
           <NavLink tag={Link} to={"/about"}>
@@ -32,17 +31,11 @@ const SideBar = ({ isOpen, toggle }) => (
             About
           </NavLink>
         </NavItem>
-        <SubMenu title="Pages" icon={faCopy} items={submenus[1]} />
+        <SubMenu title="Categories" icon={faCopy} items={submenus[1]} />
         <NavItem>
           <NavLink tag={Link} to={"/pages"}>
-            <FontAwesomeIcon icon={faImage} className="mr-2" />
-            Portfolio
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={Link} to={"/faq"}>
-            <FontAwesomeIcon icon={faQuestion} className="mr-2" />
-            FAQ
+            <FontAwesomeIcon icon={faCopy} className="mr-2" />
+            New Note
           </NavLink>
         </NavItem>
         <NavItem>
@@ -58,18 +51,7 @@ const SideBar = ({ isOpen, toggle }) => (
 
 const submenus = [
   [
-    {
-      title: "Home 1",
-      target: "Home-1",
-    },
-    {
-      title: "Home 2",
-      target: "Home-2",
-    },
-    {
-      itle: "Home 3",
-      target: "Home-3",
-    },
+    
   ],
   [
     {
