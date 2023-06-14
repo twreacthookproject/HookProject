@@ -15,7 +15,6 @@ const App = () => {
       <div className="App wrapper">
         <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
         <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
-        <p>selam</p>
       </div>
     </Router>
   );
