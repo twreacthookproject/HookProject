@@ -25,10 +25,15 @@ const SubMenu = (props) => {
         navbar
         className={classNames("items-menu", { "mb-1": !collapsed })}
       >
-        {items.map((item, index) => (
-          <NavItem key={index} className="pl-4">
-            <NavLink tag={Link} to={item.target}>
-              {item.title}
+        {items.map((item) => (
+          <NavItem
+            key={item.id}
+            className="pl-4"
+            active={category.id === this.props.currentCategory.id}
+            onClick={() => this.selectCategory(category)}
+          >
+            <NavLink tag={Link} to={item.name}>
+              {item.name}
             </NavLink>
           </NavItem>
         ))}
