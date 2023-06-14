@@ -2,9 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import { Container } from "reactstrap";
 import { Switch, Route } from "react-router-dom";
-
 import Topbar from "./Topbar";
 import Login from "../user/Login";
+import NoteList from "../assignment/NoteList";
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   <Container
@@ -28,6 +28,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <Route exact path="/page-3" component={() => "page-3"} />
       <Route exact path="/page-4" component={() => "page-4"} />
       <Route exact path="/login" component={()=><Login/>}></Route>
+      <Route exact path="/noteList:id" component={()=><NoteList/>}></Route>
     </Switch>
   </Container>
 );

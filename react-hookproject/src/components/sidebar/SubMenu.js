@@ -32,7 +32,7 @@ const SubMenu = (props) => {
             //active={item.id === this.props.currentCategory.id}
             onClick={() => this.selectCategory(category)}
           >
-            <NavLink tag={Link} to={item.name}>
+            <NavLink tag={Link} to={"noteList/"+item.id}>
               {item.name}
             </NavLink>
           </NavItem>
