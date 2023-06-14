@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
-import { AllCategories } from "../../redux/actions/categoryActions";
+import { getCategoriesApi } from "../../redux/actions/categoryActions";
 
 import {
   faHome,
@@ -20,11 +20,16 @@ function SideBar({ isOpen, toggle, categoriesProp, ...props }) {
   const [categories, setCategories] = useState({ ...categoriesProp });
 
   useEffect(() => {
-    if (categories.length === 0) {
-      props.dispatch(AllCategories());
-    }
-    setCategories({ ...props.product });
+    props.dispatch(getCategoriesApi());
+    console.log("girdi");
+    console.log(props.categories);
+    // if (categories.length === 0) {
+    //   props.dispatch(getCategoriesApi());
+    // }
+    // setCategories({ ...props.categories });
   }, [props.categories]);
+
+  console.log(categoriesProp);
 
   return (
     <div className={classNames("sidebar", { "is-open": isOpen })}>
@@ -52,7 +57,7 @@ function SideBar({ isOpen, toggle, categoriesProp, ...props }) {
           <SubMenu
             title="Categories"
             icon={faCopy}
-            items={Object.values(categories)}
+            items={Object.values(categoriesProp)}
           />
           <NavItem>
             <NavLink tag={Link} to={"/pages"}>
