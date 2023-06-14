@@ -1,5 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from "react-redux";
+
 import {
   faHome,
   faBriefcase,
@@ -24,14 +26,23 @@ const SideBar = ({ isOpen, toggle }) => (
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
         <p>Menu</p>
-        <SubMenu title="Home" icon={faHome} items={submenus[0]} />
+        <NavItem>
+          <NavLink tag={Link} to={"/home"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            Home
+          </NavLink>
+        </NavItem>
         <NavItem>
           <NavLink tag={Link} to={"/about"}>
             <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
             About
           </NavLink>
         </NavItem>
-        <SubMenu title="Categories" icon={faCopy} items={submenus[1]} />
+        <SubMenu
+          title="Categories"
+          icon={faCopy}
+          items={this.props.categories}
+        />
         <NavItem>
           <NavLink tag={Link} to={"/pages"}>
             <FontAwesomeIcon icon={faCopy} className="mr-2" />
@@ -49,20 +60,11 @@ const SideBar = ({ isOpen, toggle }) => (
   </div>
 );
 
-const submenus = [
-  [
-    
-  ],
-  [
-    {
-      title: "Page 1",
-      target: "Page-1",
-    },
-    {
-      title: "Page 2",
-      target: "Page-2",
-    },
-  ],
-];
+function mapStateToProps(state) {
+  return {
+    currentCategory: state.changeCategoryReducer,
+    categories: state.categoryListReducer,
+  };
+}
 
-export default SideBar;
+export default connect(mapStateToProps)(SideBar);
