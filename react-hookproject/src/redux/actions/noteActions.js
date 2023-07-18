@@ -1,63 +1,62 @@
 import * as actionTypes from "./actionTypes";
 
-export function getNotesSuccess(Notes) {
-  return { type: actionTypes.GET_NOTES_SUCCESS, payload: Notes };
+export function getNotesSuccess(notes) {
+  return { type: actionTypes.GET_NOTES_SUCCESS, payload: notes };
 }
 
-export function createNotesuccess(Note) {
-  return { type: actionTypes.CREATE_NOTE_SUCCESS, payload: Note };
+export function createNoteSuccess(note) {
+  return { type: actionTypes.CREATE_NOTE_SUCCESS, payload: note };
 }
 
-export function updateNotesuccess(Note) {
-  return { type: actionTypes.UPDATE_NOTE_SUCCESS, payload: Note };
+export function updateNoteSuccess(note) {
+  return { type: actionTypes.UPDATE_NOTE_SUCCESS, payload: note };
 }
 
-export function saveNoteApi(Note) {
-  return fetch("http://localhost:3000/notes/" + (Note.id || ""), {
-    method: Note.id ? "PUT" : "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(Note)
-  })
-    .then(handleResponse)
-    .catch(handleError);
+export async function saveNoteApi(note) {
+  const url = "http://localhost:3000/notes/" + (note.id || "");
+  const method = note.id ? "PUT" : "POST";
+  const headers = { "content-type": "application/json" };
+  const body = JSON.stringify(note);
+
+  const response = await fetch(url, {
+    method,
+    headers,
+    body
+  });
+  
+  if (response.ok) {
+    return response.json();
+  }
+
+  const error = await response.text();
+  throw new Error(error);
 }
 
-export function saveNote(Note) {
-  return function(dispatch) {
-    return saveNoteApi(Note)
-      .then(savedNote => {
-        Note.id
-          ? dispatch(updateNotesuccess(savedNote))
-          : dispatch(createNotesuccess(savedNote));
-      })
-      .catch(error => {
-        throw error;
-      });
+export function saveNote(note) {
+  return async function(dispatch) {
+    try {
+      const savedNote = await saveNoteApi(note);
+      note.id
+        ? dispatch(updateNoteSuccess(savedNote))
+        : dispatch(createNoteSuccess(savedNote));
+    } catch (error) {
+      throw error;
+    }
   };
 }
 
-export async function handleResponse(response){
-  if(response.ok){
-    return response.json()
-  }
-
-  const error = await response.text()
-  throw new Error(error)
-}
-
-export function handleError(error){
-  console.error("Bir hata oluştu")
-  throw error;
-}
-
 export function getNotes(categoryId) {
-  return function(dispatch) {
+  return async function(dispatch) {
     let url = "http://localhost:3000/notes";
     if (categoryId) {
-        url = url + "?categoryId=" + categoryId;
-      }
-    return fetch(url)
-      .then(response => response.json())
-      .then(result => dispatch(getNotesSuccess(result)));
+      url = url + "?categoryId=" + categoryId;
+    }
+    try {
+      const response = await fetch(url);
+      const result = await response.json();
+      dispatch(getNotesSuccess(result));
+    } catch (error) {
+      throw error;
+    }
   };
 }

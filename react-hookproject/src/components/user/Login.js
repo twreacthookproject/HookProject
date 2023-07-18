@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
 import { Card,CardBody, CardFooter, CardHeader } from 'reactstrap';
+import SideBar from '../sidebar/SideBar';
+import Content from '../content/Content';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,10 @@ class Login extends Component {
     return (
       <div>
         {currentUser ? (
-          <h1>Giriş Yapıldı</h1>
+           <div className="App wrapper">
+           <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+           <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
+         </div>
         ) : (
           <div className='row' style={{marginTop:"100px"}}>
 <div className='col-6 offset-3'>

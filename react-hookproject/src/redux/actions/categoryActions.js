@@ -17,15 +17,18 @@ export function AllCategories(categories) {
   return { type: actionTypes.GET_CATEGORIES_SUCCESS, payload: categories };
 }
 
-export function getCategoriesApi(categoryId) {
+export function getCategoriesApi() {
+
   return function (dispatch) {
     let url = "http://localhost:3000/categories";
+   
     console.log(url);
     return fetch(url)
       .then((response) => response.json())
       .then((result) => dispatch(AllCategories(result)));
   };
 }
+
 
 export function saveCategoryApi(category) {
   return fetch("http://localhost:3000/categories/" + (category.id || ""), {

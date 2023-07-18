@@ -3,12 +3,15 @@ import classNames from "classnames";
 import { Collapse, NavItem, NavLink } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-
+import { getNotes } from "../../redux/actions/noteActions";
 const SubMenu = (props) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggle = () => setCollapsed(!collapsed);
   const { icon, title, items } = props;
-
+  const selectCategory = (category) =>{
+    getNotes(category.Id)
+console.log(category);
+  }
   return (
     <div>
       <NavItem
@@ -30,9 +33,9 @@ const SubMenu = (props) => {
             key={item.id}
             className="pl-4"
             //active={item.id === this.props.currentCategory.id}
-            onClick={() => this.selectCategory(category)}
+            onClick={()=>selectCategory(item)}
           >
-            <NavLink tag={Link} to={"noteList/"+item.id}>
+            <NavLink tag={Link} to={"/noteList/"+item.id}>
               {item.name}
             </NavLink>
           </NavItem>

@@ -24,24 +24,25 @@ class NoteList extends Component {
     alertify.success(note.title + " eklendi.");
   };
   render() {
+    console.log("Notes");
+    console.log(this.props.notes);
     return (
       <div>
         <h3>
           <Badge color="success">{this.props.currentCategory.name}</Badge>
         </h3>
         <CardGroup>
-          {this.props.notes.map((note) => (
-            <Col xs="4">
+          {this.props.notes.map((note) => ( // props.notes olarak güncellendi
+            <Col xs="4" key={note.id}>
               <Card
                 style={{ marginLeft: "10px", marginRight: "10px" }}
-                key={note.id}
               >
                 <CardBody>
                   <CardTitle>
                     <Link to={"/savenote/" + note.id}>{note.title}</Link>
                   </CardTitle>
                   <CardText>{note.content}</CardText>
-                  <Button onClick={() => makeNoteDone(note)} color="info">
+                  <Button onClick={() => this.makeNoteDone(note)} color="info">
                     Done
                   </Button>
                 </CardBody>
@@ -57,9 +58,10 @@ class NoteList extends Component {
 function mapStateToProps(state) {
   return {
     currentCategory: state.changeCategoryReducer,
-    notes: state.noteListReducer,
+    notes: state.noteListReducer, // state.noteListReducer olarak güncellendi
   };
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

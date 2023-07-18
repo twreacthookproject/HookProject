@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Topbar from "./Topbar";
 import Login from "../user/Login";
 import NoteList from "../assignment/NoteList";
-
+import SignUp from "../user/SignUp";
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   <Container
     fluid
@@ -13,7 +13,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   >
     <Topbar toggleSidebar={toggleSidebar} />
     <Switch>
-      <Route exact path="/" component={() => "Hello"} />
+    <Route exact path="/" component={()=><NoteList/>}></Route>
       <Route exact path="/about" component={() => "About"} />
       <Route exact path="/Pages" component={() => "Pages"} />
       <Route exact path="/faq" component={() => "FAQ"} />
@@ -29,6 +29,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <Route exact path="/page-4" component={() => "page-4"} />
       <Route exact path="/login" component={()=><Login/>}></Route>
       <Route exact path="/noteList:id" component={()=><NoteList/>}></Route>
+      <Route exact path="/signup" component={()=><SignUp/>}></Route>
     </Switch>
   </Container>
 );
